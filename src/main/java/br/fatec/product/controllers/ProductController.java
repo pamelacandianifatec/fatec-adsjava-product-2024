@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.fatec.product.dtos.ProductResponse;
 import br.fatec.product.entities.product;
 import br.fatec.product.services.ProductService;
 
@@ -25,7 +26,7 @@ public class ProductController {
     private ProductService service;
 
     @GetMapping
-    public ResponseEntity <List<product>> getProducts(){
+    public ResponseEntity <List<ProductResponse>> getProducts(){
         return ResponseEntity.ok(service.getAllProducts());
     }
 

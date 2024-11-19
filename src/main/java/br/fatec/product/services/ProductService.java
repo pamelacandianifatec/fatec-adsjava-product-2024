@@ -1,11 +1,14 @@
 package br.fatec.product.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.fatec.product.dtos.ProductResponse;
 import br.fatec.product.entities.product;
+import br.fatec.product.mappers.ProductMapper;
 import br.fatec.product.repositories.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 
@@ -15,8 +18,8 @@ public class ProductService {
     @Autowired
     private ProductRepository repository;
 
-    public List<product> getAllProducts(){
-        return repository.findAll();
+    public List<ProductResponse> getAllProducts(){
+        return repository.findAll().stream().map( p -> ProductMapper.toDTO(p)).collect(Collectors.toList());
     }
 
     public product getProductById(long id){
